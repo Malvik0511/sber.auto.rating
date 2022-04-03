@@ -6,6 +6,8 @@ import { routes } from "./constant/navigation";
 
 import { OnBoarding } from "./pages/on-boarding/on-boarding";
 import { MainParams } from "./pages/main-params/main-params";
+import { Region } from "./pages/region/region";
+import { Model } from "./pages/model/model";
 import {
     AppStyled,
     ContainerStyled
@@ -20,6 +22,8 @@ const App = () => (
                 <Switch>
                     <Route path={routes.main} component={OnBoarding} exact/>
                     <Route path={routes.firstPage} component={MainParams} />
+                    <Route path={routes.regionPage} component={Region}/>
+                    <Route path={routes.model} component={Model}/>
                     <Route component={() => <div>Not found</div>}/>
                 </Switch>
             </Router>

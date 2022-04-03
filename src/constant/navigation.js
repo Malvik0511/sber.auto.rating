@@ -1,5 +1,6 @@
 export const routes = {
     main: '/',
     firstPage: '/main-step',
-    regionPage: '/region'
+    regionPage: '/region',
+    model: '/mode'
 }

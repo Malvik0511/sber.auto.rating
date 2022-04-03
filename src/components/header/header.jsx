@@ -4,19 +4,16 @@ import { Header as PlasmaHeader} from "@sberdevices/plasma-ui";
 
 import brand from "../../assets/images/brand.png";
 
-import {HeaderStyled} from "./header-styled.style";
-
-export const Header = ({ start = false, link = ''}) => {
+export const Header = ({ link = ''}) => {
     const history = useHistory()
-    const H = useMemo(() => start ? HeaderStyled : PlasmaHeader, [start])
     const backHandleClick = useCallback(() => {
-        if (!start && link) {
+        if (link) {
             history.push(link)
         }
-    }, [start, link, history])
+    }, [link, history])
 
     return (
-        <H
+        <PlasmaHeader
             back={true}
             logo={brand}
             logoAlt="auto.ru"

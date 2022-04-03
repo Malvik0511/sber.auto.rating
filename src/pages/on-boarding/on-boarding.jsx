@@ -17,6 +17,7 @@ import {
     ContentWrapper,
     BottomWrapper
 } from './on-boarding.style'
+import {MainFlowWrapper} from "../../components/main-flow-wrapper/main-flow-wrapper";
 
 const list = [
     { title: 'Введите гос. номер, пробег и регион', description: 'Если не знаете гос. номер — можете оценить по VIN или другим параметрам'},
@@ -30,24 +31,25 @@ export const OnBoarding = () => {
     }, [history])
 
     return (
-        <ContentWrapper>
-            <Header start/>
-            <Image
-                src={img}
-                width="255px"
-                height="255px"
-                alt="Картинка для примера фоном"
-            />
-            <Headline2 mb='4x'>
-                Оценить автомобиль
-            </Headline2>
-            <ParagraphText1>
-                за пару простых шагов
-            </ParagraphText1>
-            <BottomWrapper>
-                <Stager list={list}/>
-                <Button text="Оценить" size="s" view="primary" stretch onClick={onNextClick}/>
-            </BottomWrapper>
-        </ContentWrapper>
+        <MainFlowWrapper>
+            <ContentWrapper>
+                <Image
+                    src={img}
+                    width="255px"
+                    height="255px"
+                    alt="Картинка для примера фоном"
+                />
+                <Headline2 mb='4x'>
+                    Оценить автомобиль
+                </Headline2>
+                <ParagraphText1>
+                    за пару простых шагов
+                </ParagraphText1>
+                <BottomWrapper>
+                    <Stager list={list}/>
+                    <Button text="Оценить" size="s" view="primary" stretch onClick={onNextClick}/>
+                </BottomWrapper>
+            </ContentWrapper>
+        </MainFlowWrapper>
     )
 }

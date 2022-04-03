@@ -8,6 +8,7 @@ import { Form } from '../../components/form'
 import selectors from '../../__data__/selectors/data'
 import { Header } from "../../components/header/header";
 import { routes } from "../../constant/navigation";
+import {MainFlowWrapper} from "../../components/main-flow-wrapper/main-flow-wrapper";
 
 const propsDict = selectors.forms.mainParams
 const items = [
@@ -24,8 +25,7 @@ const onSubmit = (values) => console.log(values)
 export const MainParams = () => {
     const [index, setIndex] = useState(0)
 
-    return <>
-        <Header link={routes.main}/>
+    return <MainFlowWrapper>
         <Tabs
             size="l"
             view="secondary"
@@ -48,5 +48,5 @@ export const MainParams = () => {
             ))}
         </Tabs>
         <Form { ...items[index].props} onSubmit={onSubmit} info=''/>
-    </>
+    </MainFlowWrapper>
 }
