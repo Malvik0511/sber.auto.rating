@@ -1,16 +1,16 @@
-import React, { useMemo, useCallback } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Header as PlasmaHeader} from "@sberdevices/plasma-ui";
 
 import brand from "../../assets/images/brand.png";
 
 export const Header = ({ link = ''}) => {
-    const history = useHistory()
+    const navigate = useNavigate()
     const backHandleClick = useCallback(() => {
         if (link) {
-            history.push(link)
+            navigate(link)
         }
-    }, [link, history])
+    }, [link, navigate])
 
     return (
         <PlasmaHeader

@@ -1,16 +1,19 @@
-import React, {useCallback} from "react";
-import { useHistory } from 'react-router-dom'
+import React, { useCallback } from "react";
+import { useLocation } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
 import { Header } from "@sberdevices/plasma-ui";
 
-import {Progress} from "./progress";
+import { Progress } from "./progress";
 
-export const SecondaryFlowWrapper = ({ title, description, startPercent, endPercent, children, link }) => {
-    const history = useHistory()
+export const SecondaryFlowWrapper = ({ title, description, children, nastedRotes }) => {
+    const path = useLocation().pathname
+    const index = nastedRotes.indexOf(path)
+    const percent = (index + 1)/nastedRotes.length * 100
+
+    const navigate = useNavigate()
     const backHandleClick = useCallback(() => {
-        if (link) {
-            history.push(link)
-        }
-    }, [link])
+        navigate(-1)
+    }, [navigate])
 
     return (
         <>
@@ -21,7 +24,7 @@ export const SecondaryFlowWrapper = ({ title, description, startPercent, endPerc
                 subtitle=""
                 onBackClick={backHandleClick}>
             </Header>
-            <Progress startPercent={startPercent} endPercent={endPercent}/>
+            <Progress percent={percent}/>
             {children}
         </>
     )
