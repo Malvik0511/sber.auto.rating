@@ -1,6 +1,7 @@
 export const routes = {
     main: '/',
-    firstPage: '/main-step',
-    regionPage: '/region',
-    model: '/mode'
+    mainParams: '/flow/main-step',
+    subflow: '/subflow/',
+    regionPage: '/subflow/region',
+    model: '/subflow/model'
 }

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {
     Button,
     Image,
@@ -10,8 +10,6 @@ import {
 import img from '../../assets/images/calculator.png'
 import { Stager } from '../../components/stager/stager'
 import { routes } from "../../constant/navigation";
-
-import { Header } from "../../components/header/header";
 
 import {
     ContentWrapper,
@@ -25,10 +23,10 @@ const list = [
 ]
 
 export const OnBoarding = () => {
-    const history = useHistory()
+    const navigate = useNavigate()
     const onNextClick = useCallback(() => {
-        history.push(routes.firstPage)
-    }, [history])
+        navigate(routes.mainParams)
+    }, [navigate])
 
     return (
         <MainFlowWrapper>
