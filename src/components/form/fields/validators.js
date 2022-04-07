@@ -50,6 +50,12 @@ const maxLength = (value, payload) => {
     return String(value).length > Number(payload.value) ? message : ''
 }
 
+const minLength = (value, payload) => {
+    const message = payload.message || error
+
+    return String(value).length < Number(payload.value) ? message : ''
+}
+
 const defaultValidator = () => ''
 
 export const validators = {
@@ -59,6 +65,7 @@ export const validators = {
     maxValue,
     defaultValidator,
     maxLength,
+    minLength,
     includeReg,
     excludeReg
 }

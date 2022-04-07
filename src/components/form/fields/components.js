@@ -1,9 +1,9 @@
-import { TextField } from '@sberdevices/plasma-ui'
-
+import { TextFieldStyled } from './text-field-styled.style'
 import { SelectStyled } from './select-styled.style'
 
 export const components = {
-    TextField,
+    TextField: TextFieldStyled,
+    NumberField: TextFieldStyled,
     Select: SelectStyled
 }
 

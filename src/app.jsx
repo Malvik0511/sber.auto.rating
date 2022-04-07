@@ -4,7 +4,8 @@ import { BrowserRouter, Route, Routes, Outlet } from 'react-router-dom'
 import { routes } from "./constant/navigation";
 
 import { OnBoarding } from "./pages/on-boarding/on-boarding";
-import { MainParams } from "./pages/main-params/main-params";
+import { MainParams } from "./pages/main-flow/main-params/main-params";
+import { Status } from "./pages/main-flow/status/status";
 import { SecondaryFlowWrapper } from "./components/secondary-flow-wrapper/secondary-flow-wrapper"
 import { Region } from "./pages/region/region";
 import { Model } from "./pages/model/model";
@@ -24,6 +25,9 @@ const App = () => (
                     <Route 
                         path={routes.mainParams} 
                         element={<MainParams/>} />
+                    <Route 
+                        path={routes.status} 
+                        element={<Status/>} />
                     <Route 
                         path={routes.subflow}
                         element={<SecondaryFlowWrapper nastedRotes={[routes.regionPage, routes.model]}>
