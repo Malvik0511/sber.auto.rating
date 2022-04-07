@@ -1,4 +1,5 @@
 import React from 'react'
+import { useMask } from 'react-mask-field';
 import { Link } from "@sberdevices/plasma-web";
 import { Field } from 'react-final-form'
 import isEqual from 'lodash/isEqual'
@@ -10,14 +11,26 @@ import {
     FieldLinkWrapper
 } from './field.styled'
 
-export const CustomField = React.memo(({ id, last = false, title = last, component: Component, action, ...field }) => (
-    <FieldWrapper key={id} data-unit={id}>
-        <Field name={id} validate={composeValidators(field.validators)}>
-            {({ input, meta }): JSX.Element => {
+
+export const CustomField = React.memo(({ id, last = false, title = last, component: Component, action, mask = {}, ...field }) => {
+    const ref = useMask(mask)
+    const refProp =  Object.keys(mask).length ? { ref } : {}
+
+    return <FieldWrapper key={id} data-unit={id}>
+        <Field name={id} validate={composeValidators(field.validators, field?.type)}>
+            {({ input, meta }) => {
                 const { error, dirty, touched } = meta
                 const errState = error && (dirty || touched)
-                const fieldTemplate = <Component {...input} id={`field-${id}`} type="text" {...field} error={errState ? error : ''} aria-label={title} label={String(title)}/>
-
+                const fieldTemplate = <Component
+                    {...input}
+                    {...refProp}
+                    status={errState ? 'error': 'success'}
+                    id={`field-${id}`} 
+                    type="text" {...field}
+                    aria-label={title}
+                    label={String(title)}
+                    helperText={errState ? error : ''}
+                    />
                 return fieldTemplate
             }}
         </Field>
@@ -27,4 +40,4 @@ export const CustomField = React.memo(({ id, last = false, title = last, compone
             </FieldLinkWrapper>
         }
     </FieldWrapper>
-), isEqual)
+}, isEqual)

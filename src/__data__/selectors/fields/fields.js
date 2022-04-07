@@ -18,13 +18,34 @@ export const buildValidators = (list) => [
         .map((obj) => validatorsBuildDictionary[String(obj.type)](obj))
 ]
 
-export const buildTextField = ({ value = '', title = '', id = '', action, placeholder = '' } = {}) => buildDefaultField({
+export const buildTextFieldWithType = ({ value = '', title = '', id = '', action, placeholder = '', mask, type, validators = [] } = {}) => buildDefaultField({
+    value,
+    title,
+    id,
+    type,
+    placeholder,
+    action,
+    mask,
+    validators: buildValidators([
+        {
+            type: 'required',
+            message: errors.default
+        }, {
+            type: 'maxLength',
+            value: '100',
+            message: errors.maxLength
+        }, ...validators
+    ])
+})
+
+export const buildTextField = ({ value = '', title = '', id = '', action, placeholder = '', mask } = {}) => buildTextFieldWithType({
     value,
     title,
     id,
     type: 'TextField',
     placeholder,
     action,
+    mask,
     validators: buildValidators([
         {
             type: 'required',

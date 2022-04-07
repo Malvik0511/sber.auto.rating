@@ -34,13 +34,23 @@ const buildMaxValueValidator = (props) => {
     })
 }
 
-
 const buildMaxLengthValidator = (props) => {
     const value = props.value || '0'
     const message = props.message || errors.default
 
     return buildValidator({
         type: 'maxLength',
+        value,
+        message
+    })
+}
+
+const buildMinLengthValidator = (props) => {
+    const value = props.value || '0'
+    const message = props.message || errors.default
+
+    return buildValidator({
+        type: 'minLength',
         value,
         message
     })
@@ -72,6 +82,7 @@ export const validatorsBuildDictionary = {
     required: buildRequiredValidator,
     minValue: buildMinValueValidator,
     maxValue: buildMaxValueValidator,
+    minLength: buildMinLengthValidator,
     maxLength: buildMaxLengthValidator,
     includeReg: buildIncludeRegValidator,
     excludeReg: buildExcludeRegValidator
